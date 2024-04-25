@@ -61,33 +61,38 @@ public class ConversorMonedas {
             case("Soles a Dólar"):
 
                 convert = 1/conversionRates.get("PEN").getAsDouble();
-                System.out.println("Entra a conversion de dolares: "+ convert);
+                //System.out.println("Entra a conversion de dolares: "+ convert);
                 result = formatearDecimal(convert *this.getMoney());
-                System.out.println("los dolares que tiene es: "+result);
+                //System.out.println("los dolares que tiene es: "+result);
                 break;
 
             case("Soles a Euro"):
-                convert= conversionRates.get("EUR").getAsDouble();
-                System.out.println(convert);
+                convert= 1/conversionRates.get("EUR").getAsDouble();
+                result = formatearDecimal(convert *this.getMoney());
+                //System.out.println(convert);
                 break;
 
             case("Soles a Libras"):
-                convert= conversionRates.get("LIB").getAsDouble();
+                convert= 1/conversionRates.get("GBP").getAsDouble();
+                result = formatearDecimal(convert *this.getMoney());
                 System.out.println(convert);
                 break;
 
             case("Soles a Yen"):
                 convert= conversionRates.get("YEN").getAsDouble();
+                result = formatearDecimal(convert *this.getMoney());
                 System.out.println(convert);
                 break;
 
             case("Soles a Won Coreano"):
                 convert= conversionRates.get("KRW").getAsDouble();
+                result = formatearDecimal(convert *this.getMoney());
                 System.out.println(convert);
                 break;
 
             case("Dólar a Soles"):
-                convert = 1.0 /conversionRates.get("PEN").getAsDouble();
+                convert =conversionRates.get("PEN").getAsDouble();
+                result = formatearDecimal(convert *this.getMoney());
                 System.out.println(convert);
                 break;
 

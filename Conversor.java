@@ -23,6 +23,8 @@ public class Conversor {
         //Sera la variable donde se obtendra el resultado de la conversion, ya sea monedas o temperaturas
         double result = 0;
 
+        boolean validInput= false;
+
         //bucle mientras el valor de continuar sea un YES, osea 1
 
         while (continuar == JOptionPane.YES_OPTION) {
@@ -31,9 +33,19 @@ public class Conversor {
 
             String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Elige una opción: ", "Entrada", JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
 
-            //Ingreso del valor que convertiremos
-            double inputValue = Double.parseDouble((JOptionPane.showInputDialog("Ingrese la cantidad de dinero que deseas convertir ")));
-            conversor.setMoney(inputValue);
+            //Ingresamos en un bucle para ver el tema de entradas validas en el monto de conversion
+            while (!validInput) {
+                try {
+                    //Ingreso del valor que convertiremos
+                    double inputValue = Double.parseDouble((JOptionPane.showInputDialog("Ingrese la cantidad de dinero que deseas convertir ")));
+                    conversor.setMoney(inputValue);
+                    //La entrada se vuelve valida
+                    validInput = true;
+                } catch (NumberFormatException e) {
+                    // Si la entrada no es un número válido, mostrar un mensaje de error
+                    JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.");
+                }
+            }
 
             //Se va a verificar si el cambio elegido entre monedas y temperaturas para ver a donde ir
             if (Objects.equals(opcionSeleccionada, opciones[0])) {

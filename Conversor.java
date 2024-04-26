@@ -34,7 +34,7 @@ public class Conversor {
 
     }
 
-    public double converMoney() throws IOException {
+    public String converMoney() throws IOException {
         // Setting URL
         String urlStr = "https://v6.exchangerate-api.com/v6/5bdfb4a0c14b4b52748f948b/latest/USD";
 
@@ -55,44 +55,64 @@ public class Conversor {
         String optionSelected = getConverterSelected();
 
         double convert;
-        double result=7000;
+        String result="7000";
 
         switch (optionSelected){
             case("Soles a Dólar"):
 
                 convert = 1/conversionRates.get("PEN").getAsDouble();
                 //System.out.println("Entra a conversion de dolares: "+ convert);
-                result = formatearDecimal(convert *this.getValueToConver());
+                result = "$ " + formatearDecimal(convert *this.getValueToConver()) + " dólares";
                 //System.out.println("los dolares que tiene es: "+result);
                 break;
 
             case("Soles a Euro"):
                 convert= 1/conversionRates.get("EUR").getAsDouble();
-                result = formatearDecimal(convert *this.getValueToConver());
+                result = "€ " + formatearDecimal(convert *this.getValueToConver()) + " euros";
                 //System.out.println(convert);
                 break;
 
             case("Soles a Libras"):
                 convert= 1/conversionRates.get("GBP").getAsDouble();
-                result = formatearDecimal(convert *this.getValueToConver());
+                result = "£ " + formatearDecimal(convert *this.getValueToConver()) + "libras esterlinas";
                 System.out.println(convert);
                 break;
 
             case("Soles a Yen"):
-                convert= conversionRates.get("YEN").getAsDouble();
-                result = formatearDecimal(convert *this.getValueToConver());
+                convert= 1/conversionRates.get("YEN").getAsDouble();
+                result = "¥ "+ formatearDecimal(convert *this.getValueToConver()) + "yenes";
                 System.out.println(convert);
                 break;
 
             case("Soles a Won Coreano"):
-                convert= conversionRates.get("KRW").getAsDouble();
-                result = formatearDecimal(convert *this.getValueToConver());
+                convert= 1/conversionRates.get("KRW").getAsDouble();
+                result = "₩ " + formatearDecimal(convert *this.getValueToConver())+ "wones coreanos";
                 System.out.println(convert);
                 break;
 
             case("Dólar a Soles"):
                 convert =conversionRates.get("PEN").getAsDouble();
-                result = formatearDecimal(convert *this.getValueToConver());
+                result = "S/ "+formatearDecimal(convert *this.getValueToConver()) + "soles";
+                System.out.println(convert);
+                break;
+            case("Euro a Soles"):
+                convert =conversionRates.get("EUR").getAsDouble();
+                result = "S/ "+formatearDecimal(convert *this.getValueToConver()) + "soles";
+                System.out.println(convert);
+                break;
+            case("Yenes a Soles"):
+                convert =conversionRates.get("GBP").getAsDouble();
+                result = "S/ "+formatearDecimal(convert *this.getValueToConver()) + "soles";
+                System.out.println(convert);
+                break;
+            case("Libras a Soles"):
+                convert =conversionRates.get("YEN").getAsDouble();
+                result = "S/ "+formatearDecimal(convert *this.getValueToConver()) + "soles";
+                System.out.println(convert);
+                break;
+            case("Won Coreano a Soles"):
+                convert =conversionRates.get("KWR").getAsDouble();
+                result = "S/ "+formatearDecimal(convert *this.getValueToConver()) + "soles";
                 System.out.println(convert);
                 break;
 
@@ -100,8 +120,8 @@ public class Conversor {
         return result;
     }
 
-    public double convertTemp(){
-        double result=7000;
+    public String convertTemp(){
+        String result="7000";
         String optionSelected = getConverterSelected();
         switch (optionSelected) {
             case ("Grados celcius a Farenheit"):
@@ -123,10 +143,10 @@ public class Conversor {
         return result;
     }
 
-    public double formatearDecimal(double numero) {
+    public String formatearDecimal(double numero) {
         DecimalFormat df = new DecimalFormat("#.##");
         String numeroFormateado = df.format(numero);
-        return Double.parseDouble(numeroFormateado.replace(',', '.'));
+        return numeroFormateado.replace(',', '.');
     }
 
 }

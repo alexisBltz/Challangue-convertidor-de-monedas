@@ -7,7 +7,7 @@ public class Challangue {
     public static String [] opciones = {"Conversor de moneda","Conversor de temperataura"};
     //Las opciones de conversion de monedas
     public static String [] conversoresMonedas = {"Soles a Dólar","Soles a Euro","Soles a Libras", "Soles a Yen","Soles a Won Coreano",
-            "Dólar a Soles", "Euro a Soles", "Libras a Soles","Yen a Soles", "Won Coreano a Soles"};
+            "Dólar a Soles", "Euro a Soles", "Libras a Soles","Yenes a Soles", "Won Coreano a Soles"};
     //Las opciones de conversion de temperaturas
     public static String [] conversoresTemp = {"Grados celcius a Farenheit","Grados Celcius a Kelvin","Grados Farenheit a Grados Celcius",
             "Kelvin a Grados Celcius","Kelvin a Grados Farenheit"};
@@ -20,7 +20,7 @@ public class Challangue {
         Conversor conversor = new Conversor();
 
         //Sera la variable donde se obtendra el resultado de la conversion, ya sea monedas o temperaturas
-        double result = 0;
+        String result = "";
 
         boolean validInput= false;
 

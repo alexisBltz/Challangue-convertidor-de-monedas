@@ -34,9 +34,16 @@ public class Challangue {
 
             //Ingresamos en un bucle para ver el tema de entradas validas en el monto de conversion
             while (!validInput) {
+                double inputValue=0;
                 try {
                     //Ingreso del valor que convertiremos
-                    double inputValue = Double.parseDouble((JOptionPane.showInputDialog("Ingrese la cantidad de dinero que deseas convertir ")));
+                    if (Objects.equals(opcionSeleccionada, opciones[0])){
+                        inputValue = Double.parseDouble((JOptionPane.showInputDialog("Ingrese la cantidad de dinero que deseas convertir ")));
+                    }
+                    else{
+                        inputValue = Double.parseDouble((JOptionPane.showInputDialog("Ingrese la temperatura que deseas convertir ")));
+                    }
+
                     conversor.setValueToConver(inputValue);
                     //La entrada se vuelve valida
                     validInput = true;

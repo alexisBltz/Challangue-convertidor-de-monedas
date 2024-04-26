@@ -1,6 +1,6 @@
 # Aplicación de Conversión: Challangue
 
-![Imagen de la aplicación](img/image1.png)
+![Imagen de la aplicación](img/Sin título.jpg)
 
 ## Descripción
 

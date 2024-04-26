@@ -80,6 +80,8 @@ public class Challangue {
             }
             //mensaje de salida de la conversion
             JOptionPane.showMessageDialog(null, "Tienes " + result);
+            //restauramos a un valor por defecto para la coreccion de las entradas
+            validInput = false;
 
             //Menu si desea continuar 0 1 2
             continuar = JOptionPane.showConfirmDialog(null, "Desea continuar");

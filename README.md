@@ -42,14 +42,3 @@ Challangue es una aplicación de escritorio que te permite convertir entre difer
 
 ![Captura de pantalla 8](img/image7.png)
 
-## Créditos
-
-- Desarrollado por [Tu Nombre]
-
-## Licencia
-
-Este proyecto está bajo la Licencia [tipo de licencia]. Consulta el archivo `LICENSE` para más detalles.
-
---- 
-
-Puedes llenar los espacios "ruta/a/la/imagen.jpg", "ruta/a/la/captura1.jpg", "ruta/a/la/captura2.jpg", "Tu Nombre" y "tipo de licencia" según corresponda. ¿Necesitas ayuda con algo más?

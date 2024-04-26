@@ -1,88 +1,132 @@
-import javax.swing.*;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.io.IOException;
-import java.util.Objects;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.DecimalFormat;
 
 public class Conversor {
-    //Array de opciones, por ahora solo COnversor de mondedas y conversor de temperatura
-    public static String [] opciones = {"Conversor de moneda","Conversor de temperataura"};
-    //Las opciones de conversion de monedas
-    public static String [] conversoresMonedas = {"Soles a Dólar","Soles a Euro","Soles a Libras", "Soles a Yen","Soles a Won Coreano",
-            "Dólar a Soles", "Euro a Soles", "Libras a Soles","Yen a Soles", "Won Coreano a Soles"};
-    //Las opciones de conversion de temperaturas
-    public static String [] conversoresTemp = {"Grados celcius a Farenheit","Grados Celcius a Kelvin","Grados Farenheit a Grados Celcius",
-            "Kelvin a Grados Celcius","Kelvin a Grados Farenheit"};
-    public static void main(String[] args) {
+    private String converterSelected;
+    private double valueToConver;
 
-        //Valor que nos permetira ver si continuamos o no
-        int continuar = JOptionPane.YES_OPTION;
+    public String getConverterSelected() {
+        return converterSelected;
+    }
 
-        //Declaracion de la instancia de ConversorMonedas, el cual llama a la API y ademas nos dan el valor de la conversion a 2 decimales.
-        ConversorMonedas conversor = new ConversorMonedas();
+    public void setConverterSelected(String converterSelected) {
+        this.converterSelected = converterSelected;
+    }
 
-        //Sera la variable donde se obtendra el resultado de la conversion, ya sea monedas o temperaturas
-        double result = 0;
+    public double getValueToConver() {
+        return valueToConver;
+    }
 
-        boolean validInput= false;
+    public void setValueToConver(double valueToConver) {
+        this.valueToConver = valueToConver;
+    }
 
-        //bucle mientras el valor de continuar sea un YES, osea 1
+    public void connectApi() throws IOException {
+        // Setting URL
 
-        while (continuar == JOptionPane.YES_OPTION) {
-
-            //opcioines para convertir moendas o temperatura
-
-            String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Elige una opción: ", "Entrada", JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
-
-            //Ingresamos en un bucle para ver el tema de entradas validas en el monto de conversion
-            while (!validInput) {
-                try {
-                    //Ingreso del valor que convertiremos
-                    double inputValue = Double.parseDouble((JOptionPane.showInputDialog("Ingrese la cantidad de dinero que deseas convertir ")));
-                    conversor.setMoney(inputValue);
-                    //La entrada se vuelve valida
-                    validInput = true;
-                } catch (NumberFormatException e) {
-                    // Si la entrada no es un número válido, mostrar un mensaje de error
-                    JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.");
-                }
-            }
-
-            //Se va a verificar si el cambio elegido entre monedas y temperaturas para ver a donde ir
-            if (Objects.equals(opcionSeleccionada, opciones[0])) {
-
-                //opciones de conversiones de monedas ejemplo: de dolar a sol
-                String convertidorSeleccionado = (String) JOptionPane.showInputDialog(null, "Elige:", "Entrada", JOptionPane.INFORMATION_MESSAGE, null, conversoresMonedas, conversoresMonedas[0]);
-                //System.out.println(convertidorSeleccionado);
-                conversor.setConverterSelected(convertidorSeleccionado);
-                //System.out.println("La opcion elegida es: "+ conversor.getConverterSelected());
-                //Entramos a un try donde podremos verificar si se llamo correctamente a la API
-                try {
-                    //Usamos la variable anteriormente declarada para extraer la conversion que hemos elegido
-                    result = conversor.extractCOnvert();
-                    //System.out.println("El resultado de apenas salir de la API es: "+result);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
-
-            } else {
-                String convertidorSeleccionado = (String) JOptionPane.showInputDialog(null, "Elige:", "Entrada", JOptionPane.INFORMATION_MESSAGE, null, conversoresMonedas, conversoresMonedas[0]);
-                //result = conversorTemp(convertidorSeleccionado, inputValue);
-
-            }
-            //mensaje de salida de la conversion
-            JOptionPane.showMessageDialog(null, "Tienes " + result);
-
-            //Menu si desea continuar 0 1 2
-            continuar = JOptionPane.showConfirmDialog(null, "Desea continuar");
-            System.out.println(continuar);
-            //Finalizacion
-
-        }
-
-        JOptionPane.showMessageDialog(null, "Fin del programa");
 
     }
 
+    public double converMoney() throws IOException {
+        // Setting URL
+        String urlStr = "https://v6.exchangerate-api.com/v6/5bdfb4a0c14b4b52748f948b/latest/USD";
+
+        // Making Request
+        URL url = new URL(urlStr);
+        HttpURLConnection request = (HttpURLConnection) url.openConnection();
+        request.connect();
+        // Convert to JSON
+        JsonParser jp = new JsonParser();
+        JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+        JsonObject jsonObj = root.getAsJsonObject();
+
+        // Accessing conversion rates object
+        System.out.println("accediendo al json de las conversiones");
+        JsonObject conversionRates = jsonObj.getAsJsonObject("conversion_rates");
+        //System.out.println(conversionRates);
+
+        String optionSelected = getConverterSelected();
+
+        double convert;
+        double result=7000;
+
+        switch (optionSelected){
+            case("Soles a Dólar"):
+
+                convert = 1/conversionRates.get("PEN").getAsDouble();
+                //System.out.println("Entra a conversion de dolares: "+ convert);
+                result = formatearDecimal(convert *this.getValueToConver());
+                //System.out.println("los dolares que tiene es: "+result);
+                break;
+
+            case("Soles a Euro"):
+                convert= 1/conversionRates.get("EUR").getAsDouble();
+                result = formatearDecimal(convert *this.getValueToConver());
+                //System.out.println(convert);
+                break;
+
+            case("Soles a Libras"):
+                convert= 1/conversionRates.get("GBP").getAsDouble();
+                result = formatearDecimal(convert *this.getValueToConver());
+                System.out.println(convert);
+                break;
+
+            case("Soles a Yen"):
+                convert= conversionRates.get("YEN").getAsDouble();
+                result = formatearDecimal(convert *this.getValueToConver());
+                System.out.println(convert);
+                break;
+
+            case("Soles a Won Coreano"):
+                convert= conversionRates.get("KRW").getAsDouble();
+                result = formatearDecimal(convert *this.getValueToConver());
+                System.out.println(convert);
+                break;
+
+            case("Dólar a Soles"):
+                convert =conversionRates.get("PEN").getAsDouble();
+                result = formatearDecimal(convert *this.getValueToConver());
+                System.out.println(convert);
+                break;
+
+        }
+        return result;
+    }
+
+    public double convertTemp(){
+        double result=7000;
+        String optionSelected = getConverterSelected();
+        switch (optionSelected) {
+            case ("Grados celcius a Farenheit"):
+                result = formatearDecimal((getValueToConver() * 9 / 5) + 32);
+                break;
+            case ("Grados Celcius a Kelvin"):
+                result = formatearDecimal(getValueToConver() + 273.15);
+                break;
+            case ("Grados Farenheit a Grados Celcius"):
+                result = formatearDecimal((getValueToConver() - 32) * 5 / 9);
+                break;
+            case ("Kelvin a Grados Celcius"):
+                result = formatearDecimal(getValueToConver() - 273.15);
+                break;
+            case ("Kelvin a Grados Farenheit"):
+                result = formatearDecimal((getValueToConver() - 273.15) * 9 / 5 + 32);
+                break;
+        }
+        return result;
+    }
+
+    public double formatearDecimal(double numero) {
+        DecimalFormat df = new DecimalFormat("#.##");
+        String numeroFormateado = df.format(numero);
+        return Double.parseDouble(numeroFormateado.replace(',', '.'));
+    }
 
 }

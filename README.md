@@ -26,21 +26,21 @@ Challangue es una aplicación de escritorio que te permite convertir entre difer
 
 ## Capturas de Pantalla
 
-![Captura de pantalla 1](img/img0)
+![Captura de pantalla 1](img/img0.jpg)
 
-![Captura de pantalla 2](img/image1)
+![Captura de pantalla 2](img/image1.png)
 
-![Captura de pantalla 3](img/image2)
+![Captura de pantalla 3](img/image2.png)
 
-![Captura de pantalla 4](img/image3)
+![Captura de pantalla 4](img/image3.png)
 
-![Captura de pantalla 5](img/image4)
+![Captura de pantalla 5](img/image4.png)
 
-![Captura de pantalla 6](img/image5)
+![Captura de pantalla 6](img/image5.png)
 
-![Captura de pantalla 7](img/image6)
+![Captura de pantalla 7](img/image6.png)
 
-![Captura de pantalla 8](img/image7)
+![Captura de pantalla 8](img/image7.png)
 
 ## Créditos
 

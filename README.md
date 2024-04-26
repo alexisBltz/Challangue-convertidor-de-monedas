@@ -1,7 +1,5 @@
 # Aplicación de Conversión: Challangue
 
-![Imagen de la aplicación](img/Sin título.jpg)
-
 ## Descripción
 
 Challangue es una aplicación de escritorio que te permite convertir entre diferentes tipos de monedas y temperaturas. Proporciona una interfaz simple y fácil de usar para realizar conversiones rápidas y precisas.
@@ -28,9 +26,21 @@ Challangue es una aplicación de escritorio que te permite convertir entre difer
 
 ## Capturas de Pantalla
 
-![Captura de pantalla 1](ruta/a/la/captura1.jpg)
+![Captura de pantalla 1](img/img0)
 
-![Captura de pantalla 2](ruta/a/la/captura2.jpg)
+![Captura de pantalla 2](img/image1)
+
+![Captura de pantalla 3](img/image2)
+
+![Captura de pantalla 4](img/image3)
+
+![Captura de pantalla 5](img/image4)
+
+![Captura de pantalla 6](img/image5)
+
+![Captura de pantalla 7](img/image6)
+
+![Captura de pantalla 8](img/image7)
 
 ## Créditos
 
